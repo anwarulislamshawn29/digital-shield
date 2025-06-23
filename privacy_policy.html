@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Digital Shield</title>
+    <style>
+        :root {
+            --bg-light: #f9fafb;
+            --bg-dark: #1f2937;
+            --text-primary-light: #111827;
+            --text-primary-dark: #f3f4f6;
+            --text-secondary-light: #6b7280;
+            --border-light: #e5e7eb;
+            --border-dark: #4b5563;
+            --accent-blue: #3b82f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        html.dark body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary-dark);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.5rem; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem; }
+        html.dark h2 { border-color: var(--border-dark); }
+        
+        p { margin-bottom: 1rem; color: var(--text-secondary-light); }
+        html.dark p { color: var(--text-secondary-dark); }
+
+        strong { color: var(--text-primary-light); }
+        html.dark strong { color: var(--text-primary-dark); }
+        
+        a { color: var(--accent-blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Privacy Policy for Digital Shield</h1>
+        <p><strong>Last Updated:</strong> June 25, 2024</p>
+
+        <p>Your privacy is the core of our mission. This policy explains what information Digital Shield collects, or more importantly, what it **does not** collect.</p>
+
+        <h2>Our Core Privacy Promise</h2>
+        <p>Digital Shield is designed from the ground up to protect your privacy. We believe that your browsing data is yours and yours alone. Therefore, we have a very simple and strict data policy:</p>
+        <p><strong>We do not collect, store, or sell any of your personal information or browsing activity. Ever.</strong></p>
+
+        <h2>What Information Does Digital Shield Handle?</h2>
+        <p>To provide its features, Digital Shield needs to handle some data. However, this data is kept locally on your computer and is never sent to our servers.</p>
+        <ul>
+            <li><strong>Extension Settings:</strong> Your preferences, such as your chosen theme, font settings, and blocking persona, are saved locally on your device using `chrome.storage.sync`. This allows your settings to sync between your own browsers if you are logged into your Google account, but we cannot access this data.</li>
+            <li><strong>Tracker Information (Current Tab):</strong> To show you what trackers are on a page, the extension temporarily stores a list of detected trackers for the active tab. This data is stored in `chrome.storage.local` and is automatically deleted when you close or navigate away from the tab.</li>
+            <li><strong>Premium Status:</strong> If you purchase Digital Shield PRO, a simple `isPremium: true` flag is stored in `chrome.storage.sync`. This is used only to unlock PRO features and is not tied to any personal account on our end.</li>
+        </ul>
+
+        <h2>What Information We **NEVER** Collect</h2>
+        <p>To be perfectly clear, we will never collect, log, or have access to:</p>
+        <ul>
+            <li>Your browsing history</li>
+            <li>Your search queries</li>
+            <li>Any data you enter into forms</li>
+            <li>Your IP address</li>
+            <li>Your personal files or information</li>
+        </ul>
+
+        <h2>Third-Party Services</h2>
+        <p>Digital Shield is a self-contained extension. We do not use any third-party analytics or advertising services within the extension itself.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>If we ever make changes to this privacy policy, we will notify you through the extension and provide a clear summary of what has changed. We are committed to maintaining our core privacy promise.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, please feel free to contact us at <a href="mailto:mdanwarulislamshawn@gmail.com">mdanwarulislamshawn@gmail.com</a>.</p>
+    </div>
+</body>
+</html>
