@@ -1,0 +1,145 @@
+{
+  "manifest_version": 3,
+  "name": "Digital Shield: All-in-One Security & Privacy Suite",
+  "short_name": "Digital Shield",
+  "author": "Md. Anwarul Islam Shawn",
+  "version": "2.3",
+  "description": "Unified privacy extension: block trackers, manage passwords, cleanse browser, and stop malware—lightweight, powerful protection.",
+  "permissions": [
+   "storage",
+    "activeTab",
+    "webRequest",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "alarms",
+    "cookies",
+    "browsingData",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*/*",
+    "https://docs.google.com/"
+  ],
+  "icons": {
+    "128": "images/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+     "default_icon": {
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "element_hider.js"
+      ],
+      "css": [
+        "element_hider.css"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "dark_mode.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_balanced",
+        "enabled": true,
+        "path": "rules/rules_balanced.json"
+      },
+      {
+        "id": "ruleset_max_security",
+        "enabled": false,
+        "path": "rules/rules_max_security.json"
+      },
+      {
+        "id": "ruleset_work_mode",
+        "enabled": false,
+        "path": "rules/rules_work_mode.json"
+      },
+      {
+        "id": "ruleset_sandbox",
+        "enabled": false,
+        "path": "rules/rules_sandbox.json"
+      },
+      {
+        "id": "ruleset_https_upgrade",
+        "enabled": false,
+        "path": "rules/rules_https_upgrade.json"
+      },
+      {
+        "id": "ruleset_malicious",
+        "enabled": false,
+        "path": "rules/rules_malicious.json"
+      },
+      {
+        "id": "ruleset_fingerprinting",
+        "enabled": false,
+        "path": "rules/rules_fingerprinting.json"
+      },
+      {
+        "id": "ruleset_utm_stripping",
+        "enabled": false,
+        "path": "rules/rules_utm_stripping.json"
+      }
+    ]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+       "images/*.png",
+       "dns_info.html",
+        "dns_info.js",
+        "notes.html",
+        "notes.js",
+        "passwords.html",
+        "passwords.js",
+        "pin_prompt.html",
+        "pin_prompt.js",
+        "security_setup.html",
+        "security_setup.js",
+        "tab_locker.css",
+        "tab_locker.js",
+        "settings.html",
+        "dashboard.html",
+        "games_menu.html",
+        "request.html",
+        "blocked.html",
+        "registration.html",
+        "thank_you.html",
+        "payment_failed.html",
+        "whats-new.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "mdanwarulislamshawn@gmail.com",
+      "strict_min_version": "109.0"
+    }
+  }
+}

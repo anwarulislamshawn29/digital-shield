@@ -1,0 +1,71 @@
+/* file: tab_locker.css */
+#digital-shield-lock-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 12, 16, 0.95);
+    z-index: 2147483647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-family: 'Inter', sans-serif;
+    color: #e6edf3;
+}
+
+.dsl-container {
+    text-align: center;
+    padding: 2rem;
+    max-width: 350px;
+}
+
+.dsl-icon {
+    font-size: 3rem;
+    color: #1976D2;
+    margin-bottom: 1rem;
+}
+
+.dsl-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.75rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.dsl-subtitle {
+    color: #909dab;
+    margin: 0 0 2rem 0;
+}
+
+.dsl-pin-inputs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.dsl-pin-input {
+    width: 50px;
+    height: 60px;
+    font-size: 2rem;
+    text-align: center;
+    background-color: #161b22;
+    border: 1px solid #2a3038;
+    border-radius: 8px;
+    color: #e6edf3;
+    caret-color: #1976D2;
+    outline: none;
+}
+
+.dsl-pin-input:focus {
+    border-color: #1976D2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.3);
+}
+
+.dsl-error-message {
+    color: #EF4444;
+    height: 20px;
+    font-weight: 500;
+}

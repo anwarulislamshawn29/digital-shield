@@ -1,0 +1,11 @@
+[
+  {
+    "id": 3001,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||fingerprintjs2.com^,||clientjs.org^,||panopticlick.eff.org^, ||browserleaks.com^,||webkay.robinlinus.com^,||amiunique.org^,||amiunique.org/rpc.php^,||browserleaks.com/canvas^,||browserleaks.com/webgl^,||browserleaks.com/geoip^,||browserleaks.com/webrtc^,||browserleaks.com/headers^, ||browserleaks.com/cookie^,||browserleaks.com/flash^,||browserleaks.com/audio^,||browserleaks.com/fonts^,||browserleaks.com/notifications^,||browserleaks.com/permissions^,||browserleaks.com/headers^,||browserleaks.com/cookie^,||browserleaks.com/flash^,||browserleaks.com/audio^,||browserleaks.com/fonts^,||browserleaks.com/notifications^,||browserleaks.com/permissions^, ||browserleaks.com/canvas^,||browserleaks.com/webgl^,||browserleaks.com/geoip^,||browserleaks.com/webrtc^,||browserleaks.com/headers^,||browserleaks.com/cookie^,||browserleaks.com/flash^,||browserleaks.com/audio^,||browserleaks.com/fonts^,||browserleaks.com/notifications^,||browserleaks.com/permissions^",
+      "resourceTypes": ["script"]
+    }
+  }
+]

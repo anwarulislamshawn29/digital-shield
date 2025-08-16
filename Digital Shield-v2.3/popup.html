@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <title>Digital Shield</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        @font-face {
+            font-family: 'OpenDyslexic';
+            src: url('fonts/OpenDyslexic-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'OpenDyslexic';
+            src: url('fonts/OpenDyslexic-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-light: #F1F8E9;
+            --bg-dark: #000000;
+            --card-bg-light: #FFFFFF;
+            --card-bg-dark: #2d2e32;
+            --text-primary-light: #1B5E20;
+            --text-primary-dark: #E8F5E9;
+            --text-secondary-light: #4C8C4A;
+            --text-secondary-dark: #C5E1A5;
+            --border-light: #C5E1A5;
+            --border-dark: #4B5563;
+            --accent-blue: #1976D2;
+            --accent-green: #10B981;
+            --accent-red: #EF4444;
+            --accent-yellow: #F59E0B;
+            --accent-purple: #8B5CF6;
+            --gradient-blue: linear-gradient(135deg, #1976D2, #60A5FA);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary-light);
+            width: 400px;
+            height: 600px;
+            overflow: hidden;
+            margin: 0;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.dyslexia-friendly {
+            font-family: 'OpenDyslexic', sans-serif;
+        }
+
+        html.dark body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary-dark);
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.76rem;
+            border-bottom: 2px solid var(--accent-green);
+            flex-shrink: 0;
+        }
+
+        html.dark header {
+            border-color: var(--accent-blue);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 0.76rem;
+        }
+
+        .header-title img {
+            width: 36px;
+            height: 36px;
+        }
+
+        .header-title h1 {
+            font-size: 1.375rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        html.dark .header-title h1 {
+            color: #F3F4F6;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-actions button {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            color: var(--text-secondary-light);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .header-actions button:hover {
+            background-color: rgba(25, 118, 210, 0.1);
+            transform: scale(1.1);
+        }
+
+        html.dark .header-actions button {
+            color: var(--text-secondary-dark);
+        }
+
+        html.dark .header-actions button:hover {
+            background-color: rgba(25, 118, 210, 0.2);
+        }
+
+        .header-actions button i {
+            font-size: 1.25rem;
+        }
+
+        .pro-badge {
+            background: var(--accent-purple);
+            color: #FFFFFF;
+            font-size: 0.76rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 9999px;
+            margin-left: 0.5rem;
+            display: none;
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 0.76rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.76rem;
+            overflow-y: auto;
+        }
+
+        .card {
+            background-color: var(--card-bg-light);
+            border-radius: 12px;
+            padding: 0.76rem;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        html.dark .card {
+            background-color: var(--card-bg-dark);
+        }
+
+        #top-info-card {
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        #top-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.76rem;
+        }
+
+        #privacy-score-section,
+        #site-risk-section {
+            background-color: var(--card-bg-light);
+            border-radius: 12px;
+            padding: 0.76rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        html.dark #privacy-score-section,
+        html.dark #site-risk-section {
+            background-color: var(--card-bg-dark);
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary-light);
+        }
+
+        html.dark .info-header {
+            color: var(--text-secondary-dark);
+        }
+
+        .info-header i {
+            font-size: 1.25rem;
+        }
+
+        #privacy-score-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        #privacy-score {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            background-color: var(--accent-green);
+            transition: background-color 0.3s ease-in-out;
+            aria-label: "Privacy score: Loading...";
+        }
+
+        #privacy-score.privacy-score-a-plus,
+        #privacy-score.privacy-score-a {
+            background-color: var(--accent-green);
+        }
+
+        #current-site {
+            /* font-size: 0.875rem; */
+            font-weight: 500;
+            color: var(--text-secondary-light);
+            text-align: center;
+        }
+
+        html.dark #current-site {
+            color: var(--text-secondary-dark);
+        }
+
+        #site-risk-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        #site-risk-display1 {
+            display: flex;
+            /* flex-direction: column; */
+            align-items: center;
+            /* justify-content: center; */
+            flex-grow: 1;
+        }
+
+        #breach-icon {
+            font-size: 2.5rem;
+            color: var(--text-secondary-light);
+            transition: color 0.3s ease-in-out;
+        }
+
+        html.dark #breach-icon {
+            color: var(--text-secondary-dark);
+        }
+
+        #breach-status {
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--text-secondary-light);
+        }
+
+        #site-risk-display.no-breaches #breach-icon,
+        #site-risk-display.no-breaches #breach-status {
+            color: var(--accent-green);
+        }
+
+        #site-risk-display.low-breaches #breach-icon,
+        #site-risk-display.low-breaches #breach-status {
+            color: var(--accent-yellow);
+        }
+
+        #site-risk-display.high-breaches #breach-icon,
+        #site-risk-display.high-breaches #breach-status {
+            color: var(--accent-red);
+        }
+
+        html.dark #site-risk-display.no-breaches #breach-icon,
+        html.dark #site-risk-display.no-breaches #breach-status {
+            color: var(--accent-green);
+        }
+
+        html.dark #site-risk-display.low-breaches #breach-icon,
+        html.dark #site-risk-display.low-breaches #breach-status {
+            color: var(--accent-yellow);
+        }
+
+        html.dark #site-risk-display.high-breaches #breach-icon,
+        html.dark #site-risk-display.high-breaches #breach-status {
+            color: var(--accent-red);
+        }
+
+        #action-center-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.76rem;
+        }
+
+        .menu-item-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            height: 80px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            color: var(--text-secondary-light);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        html.dark .menu-item-btn {
+            background: var(--card-bg-dark);
+            border: 1px solid var(--border-dark);
+            color: var(--text-secondary-dark);
+        }
+
+        .menu-item-btn:hover {
+            background: var(--gradient-blue);
+            color: #FFFFFF;
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.15);
+            transform: scale(1.05);
+        }
+
+        .menu-item-btn:hover i {
+            color: #FFFFFF;
+        }
+
+        .menu-item-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* NEW: Style for enabled/selected feature buttons */
+        .menu-item-btn.enabled {
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
+            border-color: var(--accent-blue);
+        }
+
+        .menu-item-btn.enabled i,
+        .menu-item-btn.enabled span {
+            color: #FFFFFF;
+        }
+
+        /* Keep original icon colors for non-toggle buttons even when hovered */
+        .menu-item-btn:hover #destroy-cookies i,
+        .menu-item-btn:hover #clear-cache-btn i,
+        .menu-item-btn:hover #tool-notes i {
+            color: var(--accent-red);
+            /* Or original color */
+        }
+        .tooltip-btn {
+  position: relative;
+}
+
+.tooltip-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 5px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.tooltip-btn:hover::after {
+  opacity: 1;
+}
+        #tab-lock-btn i {
+            color: var(--accent-green);
+        }
+
+        .menu-item-btn i {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        #destroy-cookies i {
+            color: var(--accent-red);
+        }
+
+        #clear-cache-btn i {
+            color: var(--accent-yellow);
+        }
+
+        #action-center-grid button[title="Firewall Settings"] i {
+            color: var(--accent-blue);
+        }
+
+        #tool-notes i {
+            color: var(--accent-purple);
+        }
+
+        #tool-element-hider i {
+            color: var(--accent-red);
+        }
+
+        #tool-dark-mode i {
+            color: var(--accent-blue);
+        }
+
+        #tool-utm-stripping i {
+            color: var(--accent-green);
+        }
+
+        #tool-fingerprint-protection i {
+            color: var(--accent-blue);
+        }
+
+        #tool-malicious-site-protection i {
+            color: var(--accent-red);
+        }
+
+        #summarize-policy i {
+            color: var(--accent-blue);
+        }
+
+        #send-request i {
+            color: var(--accent-purple);
+        }
+
+        #password-manager i {
+            color: var(--accent-blue);
+        }
+
+        #vpn-toggle i {
+            color: var(--accent-green);
+        }
+
+        #privacy-coach-btn i {
+            color: var(--accent-purple);
+        }
+
+        #clean-share-btn i {
+            color: var(--accent-green);
+        }
+
+        #reading-view-btn i {
+            color: var(--accent-blue);
+        }
+
+
+        .menu-item-btn span {
+            font-size: 0.76rem;
+            font-weight: 500;
+        }
+
+        .accordion-title {
+            padding-left: 10px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary-light);
+        }
+
+        html.dark .accordion-title {
+            color: var(--text-secondary-dark);
+        }
+
+        details.card {
+            padding: 0;
+        }
+
+        details>summary {
+            padding: 0.5rem 0.76rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            /* gap: 0.5rem; */
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .accordion-content {
+            padding: 0 0.76rem 0.76rem;
+            padding-bottom: 0 0.79rem;
+        }
+
+        .accordion-arrow {
+            width: 0.875rem;
+            /* margin-left: 150px; */
+            height: 0.875rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        details[open] .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        #tracker-list {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        footer {
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            padding: 0.76rem;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.76rem;
+        }
+
+        html.dark footer {
+            border-color: var(--border-dark);
+        }
+
+        .main-footer-link {
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            padding: 0 0.5rem;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .main-footer-link:hover {
+            color: #1565C0;
+        }
+
+        .main-footer-link i {
+            margin-right: 0.25rem;
+        }
+
+        .secondary-footer-link {
+            font-size: 0.76rem;
+            color: var(--text-secondary-light);
+            padding: 0 0.25rem;
+            text-decoration: none;
+        }
+
+        html.dark .secondary-footer-link {
+            color: var(--text-secondary-dark);
+        }
+
+        .footer-separator {
+            color: var(--text-secondary-light);
+            margin: 0 0.25rem;
+        }
+
+        html.dark .footer-separator {
+            color: var(--text-secondary-dark);
+        }
+
+        #privacy-arcade-btn {
+            background: var(--gradient-blue);
+            border-radius: 9999px;
+            padding: 0.4rem;
+            border: none;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        #privacy-arcade-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        #privacy-arcade-btn i {
+            font-size: 1.75rem;
+            color: white;
+        }
+
+        /* UPDATED: Professional Scanner Animation */
+        .scanner-indicator {
+            position: relative;
+            width: 28px;
+            height: 28px;
+            color: rgb(114, 114, 114);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scanner-indicator .fa-shield-alt {
+            font-size: 24px;
+            z-index: 2;
+        }
+
+        .scanner-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(transparent 0deg,
+                    transparent 90deg,
+                    rgba(169, 242, 161, 0.5) 170deg,
+                    rgb(112, 112, 112) 180deg,
+                    rgba(150, 230, 146, 0.5) 190deg,
+                    transparent 270deg,
+                    transparent 360deg);
+            border-radius: 50%;
+            animation: rotate-scanner 3s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotate-scanner {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .confirmation-modal,
+        .privacy-tip-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--card-bg-light);
+            color: var(--text-primary-light);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--border-light);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        html.dark .confirmation-modal,
+        html.dark .privacy-tip-modal {
+            background-color: var(--card-bg-dark);
+            color: var(--text-primary-dark);
+            border-color: var(--border-dark);
+        }
+
+        .confirmation-modal.show,
+        .privacy-tip-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .confirmation-modal i,
+        .privacy-tip-modal i {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-tip-modal p.tip-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        .privacy-tip-modal p.tip-content {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+
+        .confirmation-modal p {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .confirmation-modal .timestamp {
+            font-size: 0.76rem;
+            color: var(--text-secondary-light);
+        }
+
+        html.dark .confirmation-modal .timestamp {
+            color: var(--text-secondary-dark);
+        }
+
+        .tagline {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-secondary-light);
+        }
+
+        html.dark .tagline {
+            color: var(--text-secondary-dark);
+        }
+
+        .news-ticker {
+            flex-shrink: 0;
+            padding: 0.76rem;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            background-color: var(--card-bg-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        html.dark .news-ticker {
+            background-color: var(--card-bg-dark);
+            border-color: var(--border-dark);
+        }
+
+        #date-badge {
+            font-size: 0.76rem;
+            font-weight: 600;
+            background: var(--gradient-blue);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 8px;
+            margin-right: 0.76rem;
+            flex-shrink: 0;
+        }
+
+        .news-content-wrapper {
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .news-ticker .news-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-news 200s linear infinite;
+        }
+
+        .news-ticker:hover .news-content {
+            animation-play-state: paused;
+        }
+
+        .news-ticker .news-item {
+            display: inline-block;
+            margin-right: 3rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary-light);
+        }
+
+        html.dark .news-ticker .news-item {
+            color: var(--text-secondary-dark);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            width: 80%;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .modal-buttons {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.76rem;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 0.76rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .primary-btn {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+
+        .secondary-btn {
+            background-color: var(--border-dark);
+            color: var(--text-primary-dark);
+        }
+
+        .fa-shoe-prints {
+            padding: 7px;
+            width: 28;
+            height: 28;
+        }
+
+        .card summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* UPDATED & NEW Footprint Styles */
+        #footprint-header {
+            /* display: flex; */
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.76rem;
+            margin-top: 0.76rem;
+            border-top: 1px solid var(--border-dark);
+            margin-bottom: 0.76rem;
+        }
+
+        #footprint-header p {
+            margin: 0;
+            font-size: 0.76rem;
+            color: #1c5e20;
+        }
+
+        #clear-footprint-btn {
+            background: none;
+            border: 1px solid var(--border-dark);
+            color: #1c5e20;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.76rem;
+            transition: all 0.2s;
+        }
+
+        #clear-footprint-btn:hover {
+            background-color: var(--accent-red);
+            border-color: var(--accent-red);
+            color: white;
+        }
+
+        #footprint-svg {
+            width: 100%;
+            height: 220px;
+            border-radius: 8px;
+            background-color: #0d1117;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .footprint-link {
+            stroke: rgba(207, 215, 223, 0.3);
+            stroke-width: 1.5px;
+            stroke-dasharray: 4;
+            animation: dash 1s linear infinite;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -8;
+            }
+        }
+
+        .footprint-node {
+            cursor: pointer;
+            stroke-width: 2px;
+            transition: all 150s;
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
+        }
+
+        .footprint-node:hover {
+            font-size: 1.5em
+        }
+
+        .footprint-node.user {
+            fill: #58a6ff;
+            stroke: #c9d1d9;
+        }
+
+        .footprint-node.website {
+            fill: #3fb950;
+            stroke: #c9d1d9;
+        }
+
+        .footprint-node.tracker {
+            fill: #f85149;
+            stroke: #c9d1d9;
+        }
+
+        .footprint-label {
+            font-size: 11px;
+            fill: #c9d1d9;
+            text-anchor: middle;
+            pointer-events: none;
+            font-weight: 500;
+            paint-order: stroke;
+            stroke: #0a0c10;
+            stroke-width: 2px;
+            stroke-linecap: butt;
+            stroke-linejoin: miter;
+        }
+
+        .dsicon {
+            width: 28px;
+            height: 28px;
+            align-items: center;
+            display: flex;
+        }
+
+        @keyframes scroll-news {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        #footprint-tooltip {
+            font-size: 14px;
+            /* or larger */
+            fill: #ffffff;
+            text-align: center;
+            font-weight: 800;
+            stroke: #000000;
+            stroke-width: 3px;
+        }
+
+        /* UPDATED: Echo Pulse Animation for Digital Shadow */
+        .echo-pulse-icon {
+            position: relative;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .echo-pulse-icon .fa-fingerprint {
+            font-size: 18px;
+            color: #a8c19a;
+            z-index: 2;
+        }
+        .echo-pulse-icon::before,
+        .echo-pulse-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border: 2px solid #bcd5bb;
+            border-radius: 50%;
+            opacity: 0;
+            animation: ripple-effect 3s ease-out infinite;
+        }
+        .echo-pulse-icon::after {
+            animation-delay: 1.5s; /* Stagger the animation for a continuous effect */
+        }
+        @keyframes ripple-effect {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+           #dns-info-btn i { color: var(--accent-yellow); }
+            #password-health-btn i { color: var(--accent-green); }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: #000000;
+            padding: 1.5rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 360px;
+            border: 1px solid var(--border-dark);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .modal-header h2 { margin: 0; font-size: 1.1rem; }
+        #close-health-modal-btn { background: none; border: none; color: var(--text-secondary-dark); font-size: 1.2rem; cursor: pointer; }
+        
+        /* Styles for Password Health Check Form */
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        #pwned-password-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            background-color: #000000;
+            color: var(--text-primary-dark);
+            font-size: 1rem;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--accent-blue);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        #pwned-results .pwned-result { display: flex; align-items: flex-start; padding: 1.25rem; margin-top: 1rem; border-radius: 12px; border: 1px solid; }
+        .pwned-result .pwned-icon { flex-shrink: 0; margin-right: 1rem; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+        .pwned-result .pwned-icon svg { width: 14px; height: 14px; }
+        .pwned-result-content h3 { margin: 0 0 0.25rem 0; font-size: 1rem; font-weight: 700; color: #ffffff; }
+        .pwned-result-content p { margin: 0; font-size: 0.9rem; line-height: 1.5; }
+        .pwned-result.safe { background-color: #1A2E2A; color: #B2F1DD; border-color: #2D4A43; }
+        .pwned-result.safe .pwned-icon { background-color: #B2F1DD; }
+        .pwned-result.safe .pwned-icon svg { stroke: #1A2E2A; }
+        .pwned-result.pwned { background-color: #382414; color: #FCD9B1; border-color: #573F28; }
+        .pwned-result.pwned .pwned-icon { background-color: #FBBF24; }
+        .pwned-result.pwned .pwned-icon svg { stroke: #78350F; }
+        .pwned-result.error { background-color: #401818; color: #FDB8B8; border-color: #5B2B2B; }
+        .pwned-result.error .pwned-icon { background-color: #FCA5A5; }
+        .pwned-result.error .pwned-icon svg { stroke: #7F1D1D; }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <header>
+
+            <div class="header-title">
+
+                <img src="images/icon128.png" alt="Digital Shield Logo">
+                <div>
+
+                    <h1>Digital Shield <span class="pro-badge">PRO</span></h1>
+
+                    <div class="tagline">All-in-One Security & Privacy Suite</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="privacy-arcade-btn" title="Privacy Arcade" aria-label="Privacy Arcade">
+                    <i class="fas fa-gamepad"></i>
+                </button>
+                <button id="font-toggle" title="Toggle Dyslexia-Friendly Font"
+                    aria-label="Toggle Dyslexia-Friendly Font">
+                    <i class="fas fa-text-height"></i>
+                </button>
+                <button id="theme-toggle" title="Toggle Dark/Light Mode" aria-label="Toggle Dark/Light Mode">
+                    <i class="fas fa-adjust"></i>
+                </button>
+            </div>
+        </header>
+
+        <div id="news-ticker-container" class="news-ticker" style="display: none;">
+            <span id="date-badge"></span>
+            <div class="news-content-wrapper">
+                <div class="news-content"></div>
+            </div>
+        </div>
+
+        <main>
+            <div id="top-info-card">
+                <div id="top-info-grid">
+                    <div id="privacy-score-section">
+                        <div class="info-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Privacy Score</span>
+                        </div>
+                        <div id="privacy-score-display">
+                            <div id="privacy-score" aria-label="Privacy score: Loading...">?</div>
+                            <p id="current-site">Loading...</p>
+                        </div>
+                    </div>
+                    <div id="site-risk-section">
+                        <div class="info-header">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Site Risk</span>
+                        </div>
+                        <div id="site-risk-display">
+                            <i id="breach-icon" class="fas fa-bug" aria-label="Data Breach Status"></i>
+                            <p id="breach-status">Checking...</p>
+                            <p id="breach-info" class="score-label">Last Breach: N/A</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <details class="card">
+                <summary>
+                    <div id="site-risk-display1">
+                        <div class="scanner-indicator" title="Actively Protecting"> </div>
+                        <span id="trackers-detected-count" class="accordion-title">Trackers Detected</span>
+                    </div>
+                    <!-- <i class="fas fa-eye"></i> -->
+
+                    <i class="fas fa-chevron-down accordion-arrow"></i>
+                </summary>
+                <div class="accordion-content">
+                    <div id="tracker-list">
+                        <div style="text-align: center; color: var(--text-secondary-light); padding: 0.76rem;">
+                            Loading...</div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Privacy Footprint Section -->
+            <details class="card">
+                <summary>
+                    <div id="site-risk-display1">
+                         <!-- UPDATED ICON -->
+                    <div class="echo-pulse-icon">
+                        <i class="fas fa-eye"></i>
+                        <!-- <i class="fas fa-fingerprint"></i> -->
+                    </div>
+                        <span class="accordion-title">Digital Shadow</span>
+                    </div>
+
+                    <i class="fas fa-chevron-down accordion-arrow"></i>
+                </summary>
+                <div class="accordion-content">
+                    <div id="footprint-header">
+                        <button id="clear-footprint-btn">Clear</button>
+                    </div>
+                    <div id="footprint-container">
+                        <svg id="footprint-svg"></svg>
+                        <div id="footprint-tooltip">: </div>
+                    </div>
+                </div>
+            </details>
+
+            <div id="action-center-grid" class="card">
+                <button id="destroy-cookies" class="menu-item-btn tooltip-btn" data-tooltip="Destroy Cookies" aria-label="Destroy Cookies">
+                    <i class="fas fa-trash"></i>
+                    <span>Cookies</span>
+                </button>
+                <button id="clear-cache-btn" class="menu-item-btn tooltip-btn" data-tooltip="Clear Cache" title="Clear Cache" aria-label="Clear Cache">
+                    <i class="fas fa-broom"></i>
+                    <span>Cache</span>
+                </button>
+                <button id ="firewall-settings-btn" class="menu-item-btn tooltip-btn" data-tooltip="Firewall Settings" title="Firewall Settings" aria-label="Firewall Settings">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Firewall</span>
+                </button>
+                <button id="tool-notes" class="menu-item-btn tooltip-btn" data-tooltip="Secure Notes" title="Secure Notes" aria-label="Secure Notes">
+                    <i class="fas fa-sticky-note"></i>
+                    <span>Notes</span>
+                </button>
+                <!-- NEW BUTTON 3: Reading View -->
+                <button id="reading-view-btn" class="menu-item-btn tooltip-btn" data-tooltip="Toggle Reading View" title="Toggle Reading View"
+                    aria-label="Toggle Reading View for this page">
+                    <i class="fas fa-book-reader"></i>
+                    <span>Read</span>
+                </button>
+                <button id="tool-element-hider" class="menu-item-btn tooltip-btn" data-tooltip="Element Zapper" title="Element Zapper"
+                    aria-label="Element Zapper">
+                    <i class="fas fa-eye-slash"></i>
+                    <span>Zapper</span>
+                </button>
+                <button id="tool-dark-mode" class="menu-item-btn tooltip-btn" data-tooltip="Universal Dark Mode" title="Universal Dark Mode"
+                    aria-label="Universal Dark Mode">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+                <button id="password-manager" class="menu-item-btn tooltip-btn" data-tooltip="Password Manager" title="Password Manager"
+                    aria-label="Password Manager">
+                    <i class="fas fa-key"></i>
+                    <span>Passwords</span>
+                </button>
+                <!-- NEW TAB LOCK BUTTON -->
+                <button id="tab-lock-btn" class="menu-item-btn tooltip-btn" data-tooltip="Lock Current Tab" title="Lock Current Tab">
+                    <i class="fas fa-lock"></i>
+                    <span>Lock Tab</span>
+                </button>
+                <button id="tool-utm-stripping" class="menu-item-btn tooltip-btn" data-tooltip="UTM Stripping" title="UTM Stripping" aria-label="UTM Stripping">
+                    <i class="fas fa-link"></i>
+                    <span>UTM Strip</span>
+                </button>
+                <button id="tool-fingerprint-protection" class="menu-item-btn tooltip-btn" data-tooltip="Anti-Fingerprint" title="Anti-Fingerprint"
+                    aria-label="Anti-Fingerprint">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Anti-FP</span>
+                </button>
+                <button id="tool-malicious-site-protection" class="menu-item-btn tooltip-btn" data-tooltip="Block Malicious Sites" title="Malicious Site Protection"
+                    aria-label="Malicious Site Protection">
+                    <i class="fas fa-ban"></i>
+                    <span>Block Site</span>
+                </button>
+                <!-- NEW BUTTON 1: Privacy Coach -->
+                <button id="privacy-coach-btn" class="menu-item-btn tooltip-btn" data-tooltip="Privacy Coach" title="Privacy Coach"
+                    aria-label="Get a Privacy Tip for this Page">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Coach</span>
+                </button>
+                <button id="summarize-policy" class="menu-item-btn tooltip-btn" data-tooltip="AI Powered Summarize Policy" title="Summarize Policy"
+                    aria-label="Summarize Policy">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Summarize</span>
+                </button>
+                <button id="send-request" class="menu-item-btn tooltip-btn" data-tooltip="Request My Data" title="Request My Data" aria-label="Request My Data">
+                    <i class="fas fa-user-secret"></i>
+                    <span>My Data</span>
+                </button>
+                <!-- NEW BUTTON 2: Clean & Share -->
+                <button id="clean-share-btn" class="menu-item-btn tooltip-btn" data-tooltip="Clean & Share URL" title="Clean & Share URL"
+                    aria-label="Copy a clean, tracker-free version of this URL">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Share</span>
+                </button>
+                 <button id="dns-info-btn" class="menu-item-btn tooltip-btn" data-tooltip="DNS Information"  title="DNS Info">
+                    <i class="fas fa-network-wired"></i>
+                    <span>DNS Info</span>
+                </button>
+                <button id="password-health-btn" class="menu-item-btn tooltip-btn" data-tooltip="Password Health Check"  title="Password Health Check">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Password Check</span>
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <a href="#" id="dashboard-link" class="main-footer-link">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="#" id="settings-link" class="main-footer-link">
+                    <i class="fas fa-cog"></i> More Features
+                </a>
+            </div>
+            <div>
+                <a href="privacy_policy.html" class="secondary-footer-link" target="_blank">Privacy Policy</a>
+                <span class="footer-separator">|</span>
+                <a href="faq.html" class="secondary-footer-link" target="_blank">FAQ</a>
+                <span class="footer-separator">|</span>
+                <a href="https://www.buymeacoffee.com/anwarshawn" class="secondary-footer-link"
+                    target="_blank">Support</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+     <!-- NEW: Password Health Check Modal -->
+    <div id="password-health-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Password Health Check</h2>
+                <button id="close-health-modal-btn">&times;</button>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-secondary-dark); margin-top: 0; margin-bottom: 1.5rem;">
+                Check if a password has been exposed in a data breach. Your password is never sent to any server.
+            </p>
+            <div class="form-group">
+                <label for="pwned-password-input">Password to Check</label>
+                <input type="password" id="pwned-password-input" placeholder="Enter a password...">
+            </div>
+            <button id="pwned-check-btn" class="btn-primary">Check Password</button>
+            <div id="pwned-results"></div>
+        </div>
+    </div>
+    <div id="cache-cleared-modal" class="confirmation-modal">
+        <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
+        <p>Cache Cleared!</p>
+        <span id="cache-cleared-timestamp" class="timestamp"></span>
+    </div>
+
+    <div id="cookies-destroyed-modal" class="confirmation-modal">
+        <i class="fas fa-trash-alt" style="color: var(--accent-red);"></i>
+        <p id="cookies-destroyed-message">Cookies Destroyed!</p>
+        <span id="cookies-destroyed-timestamp" class="timestamp"></span>
+    </div>
+
+    <div id="clean-share-modal" class="confirmation-modal">
+        <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
+        <p>Clean URL Copied!</p>
+        <span class="timestamp">Ready to share privately.</span>
+    </div>
+
+    <div id="privacy-coach-modal" class="privacy-tip-modal">
+        <i class="fas fa-lightbulb" style="color: var(--accent-purple);"></i>
+        <p id="privacy-tip-title" class="tip-title">Privacy Tip</p>
+        <p id="privacy-tip-content" class="tip-content">This is a placeholder tip.</p>
+    </div>
+
+    <div id="tab-locked-modal" class="confirmation-modal">
+        <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
+        <p>Tab Locked!</p>
+    </div>
+
+    <div id="action-failed-modal" class="confirmation-modal">
+    <i class="fas fa-exclamation-triangle" style="color: var(--accent-red);"></i>
+    <p id="action-failed-message">Action Not Available</p>
+    <span class="timestamp">This feature cannot be used on the current page.</span>
+</div>
+    <!-- Review Prompt Modal -->
+    <div id="review-prompt-modal" class="modal">
+        <div class="modal-content">
+            <h2>Enjoying Digital Shield?</h2>
+            <p>If you find our extension helpful, please take a moment to leave a review. Your feedback helps us
+                improve!</p>
+            <div class="modal-buttons">
+                <button id="rate-now-btn" class="modal-btn primary-btn">Rate Now</button>
+                <button id="remind-later-btn" class="modal-btn secondary-btn">Remind Me Later</button>
+                <button id="no-thanks-btn" class="modal-btn secondary-btn">No, Thanks</button>
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>

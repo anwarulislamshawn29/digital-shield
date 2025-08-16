@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Kalam:wght@400;700&display=swap');
+
+        :root {
+            --paper-bg: #FDFDF8;
+            --lines-color: #E0E8F0;
+            --margin-color: #FFC1C1;
+            --text-color: #3A3A3A;
+            --spiral-color: #D1D5DB;
+            --button-bg: #4A5568;
+            --button-text: #FFFFFF;
+            --button-hover-bg: #2D3748;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 450px;
+            height: 500px;
+            box-sizing: border-box;
+        }
+
+        #notebook-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        #spiral-binding {
+            flex-shrink: 0;
+            width: 30px;
+            background-color: #E5E7EB;
+            border-right: 1px solid #D1D5DB;
+            background-image: 
+                radial-gradient(circle at 15px 15px, transparent 8px, var(--spiral-color) 8px, var(--spiral-color) 10px, transparent 10px),
+                repeating-linear-gradient(to right, #C0C0C0, #E0E0E0, #C0C0C0);
+            background-size: 30px 30px, 100% 100%;
+            background-position: 0 15px;
+        }
+
+        #note-paper {
+            flex-grow: 1;
+            background-color: var(--paper-bg);
+            padding: 1rem 1.5rem 1rem 2.5rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #note-paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 1.5rem;
+            width: 2px;
+            height: 100%;
+            background-color: var(--margin-color);
+        }
+        
+        #note-header {
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #E0E8F0;
+            margin-bottom: 0.5rem;
+        }
+        
+        #note-header h1 {
+            font-family: 'Kalam', cursive;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        #note-textarea {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            resize: none;
+            background-image: repeating-linear-gradient(var(--paper-bg) 0, var(--paper-bg) 23px, var(--lines-color) 24px);
+            background-size: 100% 24px;
+            line-height: 24px;
+            font-family: 'Kalam', cursive;
+            font-size: 1rem;
+            color: var(--text-color);
+            padding: 0;
+            background-color: transparent;
+        }
+
+        #note-footer {
+            padding-top: 0.5rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #save-status {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #4A5568;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        #save-button {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #save-button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="notebook-container">
+        <div id="spiral-binding"></div>
+        <div id="note-paper">
+            <div id="note-header">
+                <h1>Secure Notes</h1>
+            </div>
+            <textarea id="note-textarea" placeholder="Your thoughts are safe here..."></textarea>
+            <div id="note-footer">
+                <span id="save-status">Saved!</span>
+                <button id="save-button">Save</button>
+            </div>
+        </div>
+    </div>
+    <script src="notes.js"></script>
+</body>
+</html>

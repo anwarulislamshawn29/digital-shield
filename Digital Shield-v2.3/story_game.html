@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Trail Tales</title>
+    <link rel="stylesheet" href="story_game.css">
+    <link rel="stylesheet" href="common_game_styles.css">
+</head>
+<body>
+    <div class="container">
+         <button id="back-button" class="back-button" title="Back to Menu">&larr;</button>
+        <h1>Data Trail Tales</h1>
+        <div id="prompt-area">
+            <p id="prompt-sentence"></p>
+            <div id="word-tags"></div>
+        </div>
+        <div id="story-area">
+            <textarea id="story-input" rows="5" placeholder="Write your funny story here..."></textarea>
+            <button id="finish-btn">I'm Done!</button>
+        </div>
+        <div id="result-area" style="display: none;">
+            <h2>A masterpiece!</h2>
+            <p>Your ability to cover your data trail is unmatched.</p>
+            <button id="play-again-btn">Play Again</button>
+        </div>
+    </div>
+    <script src="story_game.js"></script>
+    <script src="common_game_script.js"></script>
+</body>
+</html>

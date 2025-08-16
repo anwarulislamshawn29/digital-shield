@@ -1,0 +1,66 @@
+[
+  {
+    "id": 101, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "||google-analytics.com", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 102, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "||googletagmanager.com", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 103, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "||connect.facebook.net", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 104, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "||doubleclick.net", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 105, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "||scorecardresearch.com", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 106, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "||ad.doubleclick.net", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 107, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "||pagead2.googlesyndication.com", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 108, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "*://*.quantserve.com/*", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 109, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "*://*.mixpanel.com/*", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 110, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "*://*.hotjar.com/*", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 111, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "*://*.mouseflow.com/*", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 112, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "*://*.fullstory.com/*", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 113, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "*://*.clicktale.net/*", "resourceTypes": ["script", "image"] }
+  },
+  {"id": 114, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "*://*.yandex.ru/*", "resourceTypes": ["script", "image"] }
+  },
+  {"id": 115, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "*://*.yandex.net/*", "resourceTypes": ["script", "image"] }
+  },
+  {"id": 116, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "*://*.yandex.com/*", "resourceTypes": ["script", "image"] }
+  },
+  {"id": 117, "priority": 1, "action": { "type": "block" },
+    "condition": { "urlFilter": "*://*.yandex.ru    /*", "resourceTypes": ["image"] }
+  }
+]

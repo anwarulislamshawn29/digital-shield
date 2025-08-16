@@ -1,0 +1,11 @@
+[
+  {
+    "id": 2001,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "||maliciousdomain1.com^,||phishingsite2.net^,||malware-distributor3.org^,||scamwebsite4.com^,||fraudulent5.net^,||dangerous6.org^,||threat7.com^,||harmful8.net^,||unsafe9.org^,||malicious10.com^, ||phishing11.net^,||malware12.org^,||scam13.com^,||fraudulent14.net^,||dangerous15.org^,||threat16.com^,||harmful17.net^,||unsafe18.org^,||malicious19.com^,||phishing20.net^, ||malware21.org^,||scam22.com^,||fraudulent23.net^,||dangerous24.org^,||threat25.com^,||harmful26.net^,||unsafe27.org^,||malicious28.com^,||phishing29.net^,||malware30.org^, ||scam31.com^,||fraudulent32.net^,||dangerous33.org^,||threat34.com^,||harmful35.net^,||unsafe36.org^,||malicious37.com^,||phishing38.net^,||malware39.org^,||scam40.com^,||fraudulent41.net^,||dangerous42.org^,||threat43.com^,||harmful44.net^,||unsafe45.org^, ||malicious46.com^,||phishing47.net^,||malware48.org^,||scam49.com^,||fraudulent50.net^, ||dangerous51.org^,||threat52.com^,||harmful53.net^,||unsafe54.org^,||malicious55.com^,||phishing56.net^,||malware57.org^,||scam58.com^,||fraudulent59.net^,||dangerous60.org^,||threat61.com^,||harmful62.net^,||unsafe63.org^, ||malicious64.com^,||phishing65.net^,||malware66.org^,||scam67.com^,||fraudulent68.net^,||dangerous69.org^,||threat70.com^,||harmful71.net^,||unsafe72.org^,||malicious73.com^,||phishing74.net^,||malware75.org^,||scam76.com^,||fraudulent77.net^,||dangerous78.org^,||threat79.com^,||harmful80.net^,||unsafe81.org^, ||malicious82.com^,||phishing83.net^,||malware84.org^,||scam85.com^,||fraudulent86.net^,||dangerous87.org^,||threat88.com^,||harmful89.net^,||unsafe90.org^,||malicious91.com^,||phishing92.net^,||malware93.org^,||scam94.com^,||fraudulent95.net^,||dangerous96.org^,||threat97.com^,||harmful98.net^,||unsafe99.org^,||malicious100.com^",
+      "resourceTypes": ["main_frame"]
+    }
+  }
+]

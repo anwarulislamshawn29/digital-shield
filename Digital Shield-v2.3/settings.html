@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Digital Shield</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Digital Shield - Privacy Features</h1>
+        </header>
+        <main>
+
+            <!-- <div class="card">
+                <h2 class="card-title">Password Health Check</h2>
+                <div class="setting-group">
+                    <p class="setting-desc" style="margin-top:0; padding: 0 0 1rem 0;">
+                        Check if a password has been exposed in a data breach. Your full password is never sent to any server.
+                    </p>
+                    <div class="form-group">
+                        <label for="pwned-password-input">Password to Check</label>
+                        <input type="password" id="pwned-password-input" placeholder="Enter a password to check its security">
+                    </div>
+                    <button id="pwned-check-btn" class="btn-primary">Check Password</button>
+                    <div id="pwned-results" style="margin-top: 1.5rem;"></div>
+                </div>
+            </div> -->
+            <div class="card">
+                <h2 class="card-title">Protection Level</h2>
+                <div id="personas-container" class="setting-group">
+                    <!-- Personas are rendered here by settings.js -->
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Advanced PRO Features</h2>
+                <div id="advanced-protection-container" class="setting-group">
+                    <!-- PRO features are rendered here by settings.js -->
+                </div>
+            </div>
+                        <!-- License activation form will be injected here for non-pro users -->
+            <div id="license-activation-container"></div>
+        </main>
+    </div>
+    <!-- The user's files used browser-polyfill.js, so we'll keep it for compatibility -->
+    <script src="browser-polyfill.js"></script> 
+    <script src="settings.js"></script>
+</body>
+</html>
